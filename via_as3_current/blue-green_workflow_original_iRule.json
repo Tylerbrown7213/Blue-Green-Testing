@@ -1,5 +1,4 @@
 POST https://x.x.x.x/mgmt/shared/appsvcs/declare
-DELETE https://x.x.x.x/mgmt/shared/appsvcs/declare/blue_green_demo
 
 Service Create
 {
@@ -493,3 +492,6 @@ Pool Delete
      }
   }
 }
+
+Clean Up
+DELETE https://x.x.x.x/mgmt/shared/appsvcs/declare/blue_green_demo
