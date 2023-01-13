@@ -2,6 +2,7 @@ Enable burst handling for AS3
 POST https://serveraddress/mgmt/shared/appsvcs/settings
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 POST https://x.x.x.x/mgmt/shared/appsvcs/settings
 
 {
@@ -12,6 +13,7 @@ Verify burst handling
 GET https://serveraddress/mgmt/shared/appsvcs/settings
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 GET https://x.x.x.x/mgmt/shared/appsvcs/settings
 
 Make additional RAM avaiable to restjavad
@@ -28,6 +30,7 @@ Followed by
 PATCH https://serveraddress/mgmt/tm/sys/db/restjavad.useextramb
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 PATCH https://x.x.x.x/mgmt/tm/sys/db/restjavad.useextramb
 
 {
@@ -38,6 +41,7 @@ Restart restjavad
 POST https://serveraddress/mgmt/tm/sys/service
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 POST https://x.x.x.x/mgmt/tm/sys/service
 
 {

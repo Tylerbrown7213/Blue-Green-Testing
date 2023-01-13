@@ -2,6 +2,7 @@ CREATE the iRule
 POST https://serveraddress/mgmt/tm/ltm/rule
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 POST https://x.x.x.x/mgmt/tm/ltm/rule
 
 {
@@ -18,6 +19,7 @@ ENABLE the iRule
 PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
 
 {
@@ -33,6 +35,7 @@ UPDATE the distribution or pool
 PATCH https://serveraddress/mgmt/tm/ltm/rule/~{{ tenant }}~{{ application }}~{{ service }}_bluegreen_irule
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 PATCH https://x.x.x.x/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green_vip1_bluegreen_irule
 
 {
@@ -47,6 +50,7 @@ UPDATE the default pool
 PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
 
 {
@@ -62,6 +66,7 @@ DISABLE and remove the iRule
 PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
 
 {
@@ -75,4 +80,5 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_gr
 DELETE https://serveraddress/mgmt/tm/ltm/rule/~{{ tenant }}~{{ application }}~{{ service }}_bluegreen_irule
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
+Example
 DELETE https://x.x.x.x/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green_vip1_bluegreen_irule
