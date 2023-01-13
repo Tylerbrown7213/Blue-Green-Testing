@@ -19,7 +19,7 @@ Application Deployment
              "blue_green_vip1": {
                 "class": "Service_HTTP",
                 "virtualAddresses": [
-                   "10.77.1.225"
+                   "x.x.x.x"
                 ],
                 "allowVlans": [
                     {
@@ -37,8 +37,8 @@ Application Deployment
                 "members": [{
                    "servicePort": 80,
                    "serverAddresses": [
-                      "10.77.3.35",
-                      "10.77.3.116"
+                      "x.x.x.x",
+                      "x.x.x.x"
                    ]
                 }]
              }
@@ -65,7 +65,7 @@ Blue-Green Apply
          "blue_green_vip1": {
            "class": "Service_HTTP",
            "virtualAddresses": [
-             "10.77.1.225"
+             "x.x.x.x"
            ],
            "allowVlans": [
             {
@@ -86,8 +86,8 @@ Blue-Green Apply
            "members": [{
              "servicePort": 80,
              "serverAddresses": [
-               "10.77.3.35",
-               "10.77.3.116"
+               "x.x.x.x",
+               "x.x.x.x"
              ]
            }]
          },
@@ -99,8 +99,8 @@ Blue-Green Apply
            "members": [{
              "servicePort": 80,
              "serverAddresses": [
-               "10.77.3.117",
-               "10.77.3.118"
+               "x.x.x.x",
+               "x.x.x.x"
              ]
            }]
          },
@@ -132,7 +132,7 @@ Blue-Green Apply
         "blue_green_vip1": {
           "class": "Service_HTTP",
           "virtualAddresses": [
-            "10.77.1.225"
+            "x.x.x.x"
           ],
           "allowVlans": [
            {
@@ -153,8 +153,8 @@ Blue-Green Apply
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "10.77.3.35",
-              "10.77.3.116"
+              "x.x.x.x",
+              "x.x.x.x"
             ]
           }]
         },
@@ -166,8 +166,8 @@ Blue-Green Apply
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "10.77.3.117",
-              "10.77.3.118"
+              "x.x.x.x",
+              "x.x.x.x"
             ]
           }]
         },
@@ -199,7 +199,7 @@ Blue-Green End
            "blue_green_vip1": {
               "class": "Service_HTTP",
               "virtualAddresses": [
-                 "10.77.1.225"
+                 "x.x.x.x"
               ],
               "allowVlans": [
                   {
@@ -217,8 +217,8 @@ Blue-Green End
               "members": [{
                  "servicePort": 80,
                  "serverAddresses": [
-                    "10.77.3.117",
-                    "10.77.3.118"
+                    "x.x.x.x",
+                    "x.x.x.x"
                  ]
               }]
            }
