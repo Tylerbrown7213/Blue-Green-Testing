@@ -1,5 +1,5 @@
 Deploy
-POST https://35.238.166.47/mgmt/shared/appsvcs/declare
+POST https://x.x.x.x/mgmt/shared/appsvcs/declare
 
 Application Deployment
 {
@@ -228,4 +228,4 @@ Blue-Green End
 }
 
 Clean Up
-DELETE https://35.238.166.47/mgmt/shared/appsvcs/declare/blue_green_demo
+DELETE https://x.x.x.x/mgmt/shared/appsvcs/declare/blue_green_demo

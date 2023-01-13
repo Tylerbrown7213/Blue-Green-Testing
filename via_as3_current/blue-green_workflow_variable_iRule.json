@@ -1,5 +1,5 @@
-POST https://35.238.166.47/mgmt/shared/appsvcs/declare
-DELETE https://35.238.166.47/mgmt/shared/appsvcs/declare/blue_green_demo
+POST https://x.x.x.x/mgmt/shared/appsvcs/declare
+DELETE https://x.x.x.x/mgmt/shared/appsvcs/declare/blue_green_demo
 
 Application Deployment
 {

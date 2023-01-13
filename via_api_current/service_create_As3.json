@@ -1,4 +1,4 @@
-POST https://35.238.166.47/mgmt/shared/appsvcs/declare
+POST https://x.x.x.x/mgmt/shared/appsvcs/declare
 
 {
    "class": "AS3",
@@ -125,6 +125,6 @@ or two vip's
  }
 
  Delete All Partitions
- DELETE https://35.238.166.47/mgmt/shared/appsvcs/declare/
+ DELETE https://x.x.x.x/mgmt/shared/appsvcs/declare/
  Or Delete 1, use commas for multiple
- DELETE https://35.238.166.47/mgmt/shared/appsvcs/declare/blue_green_demo
+ DELETE https://x.x.x.x/mgmt/shared/appsvcs/declare/blue_green_demo

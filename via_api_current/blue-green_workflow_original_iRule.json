@@ -2,7 +2,7 @@ CREATE the iRule
 POST https://serveraddress/mgmt/tm/ltm/rule
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
-POST https://35.238.166.47/mgmt/tm/ltm/rule
+POST https://x.x.x.x/mgmt/tm/ltm/rule
 
 {
     "name":"/{{tenant}}/{{application}}/{{service}}_bluegreen_irule",
@@ -18,7 +18,7 @@ ENABLE the iRule
 PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
-PATCH https://35.238.166.47/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
+PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
 
 {
     "rules": [{{service}}_bluegreen_irule]
@@ -33,7 +33,7 @@ UPDATE the distribution or pool
 PATCH https://serveraddress/mgmt/tm/ltm/rule/~{{ tenant }}~{{ application }}~{{ service }}_bluegreen_irule
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
-PATCH https://35.238.166.47/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green_vip1_bluegreen_irule
+PATCH https://x.x.x.x/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green_vip1_bluegreen_irule
 
 {
     "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > {{distribution}} }\n{pool {{greenpool}}}\n}"
@@ -47,7 +47,7 @@ UPDATE the default pool
 PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
-PATCH https://35.238.166.47/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
+PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
 
 {
     "pool": "/Common/Shared/green"
@@ -62,7 +62,7 @@ DISABLE and remove the iRule
 PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
-PATCH https://35.238.166.47/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
+PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
 
 {
     "rules": []
@@ -75,7 +75,7 @@ PATCH https://35.238.166.47/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~b
 DELETE https://serveraddress/mgmt/tm/ltm/rule/~{{ tenant }}~{{ application }}~{{ service }}_bluegreen_irule
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
-DELETE https://35.238.166.47/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green_vip1_bluegreen_irule
+DELETE https://x.x.x.x/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green_vip1_bluegreen_irule
 
 Lab Cleanup
-DELETE https://35.238.166.47/mgmt/shared/appsvcs/declare/blue_green_demo
+DELETE https://x.x.x.x/mgmt/shared/appsvcs/declare/blue_green_demo
