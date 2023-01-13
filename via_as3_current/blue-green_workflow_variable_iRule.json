@@ -1,7 +1,7 @@
 POST https://x.x.x.x/mgmt/shared/appsvcs/declare
 DELETE https://x.x.x.x/mgmt/shared/appsvcs/declare/blue_green_demo
 
-Application Deployment
+Service Create
 {
     "class": "AS3",
     "action": "deploy",

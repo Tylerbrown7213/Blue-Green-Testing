@@ -1,7 +1,7 @@
 Deploy
 POST https://x.x.x.x/mgmt/shared/appsvcs/declare
 
-Application Deployment
+Service Create
 {
     "class": "AS3",
     "action": "deploy",
@@ -181,7 +181,7 @@ Blue-Green Apply
   }
 }
 
-Blue-Green End
+Blue-Green Remove
 {
   "class": "AS3",
   "action": "deploy",
