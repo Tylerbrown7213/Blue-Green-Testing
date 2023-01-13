@@ -19,7 +19,7 @@ Application Deployment
              "blue_green_vip1": {
                 "class": "Service_HTTP",
                 "virtualAddresses": [
-                   "x.x.x.x"
+                   "x.x.x.y"
                 ],
                 "allowVlans": [
                     {
@@ -37,8 +37,8 @@ Application Deployment
                 "members": [{
                    "servicePort": 80,
                    "serverAddresses": [
-                      "x.x.x.x",
-                      "x.x.x.x"
+                      "x.x.x.z",
+                      "x.x.x.z"
                    ]
                 }]
              },
@@ -50,8 +50,8 @@ Application Deployment
                "members": [{
                   "servicePort": 80,
                   "serverAddresses": [
-                     "x.x.x.x",
-                     "x.x.x.x"
+                     "x.x.x.z",
+                     "x.x.x.z"
                   ]
                }]
             }
@@ -78,7 +78,7 @@ iRule Create
         "blue_green_vip1": {
           "class": "Service_HTTP",
           "virtualAddresses": [
-            "x.x.x.x"
+            "x.x.x.y"
           ],
           "allowVlans": [
             {
@@ -96,8 +96,8 @@ iRule Create
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "x.x.x.x",
-              "x.x.x.x"
+              "x.x.x.z",
+              "x.x.x.z"
             ]
           }]
         },
@@ -109,8 +109,8 @@ iRule Create
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "x.x.x.x",
-              "x.x.x.x"
+              "x.x.x.z",
+              "x.x.x.z"
             ]
           }]
         },
@@ -142,7 +142,7 @@ iRule Apply
          "blue_green_vip1": {
            "class": "Service_HTTP",
            "virtualAddresses": [
-             "x.x.x.x"
+             "x.x.x.y"
            ],
            "allowVlans": [
             {
@@ -163,8 +163,8 @@ iRule Apply
            "members": [{
              "servicePort": 80,
              "serverAddresses": [
-               "x.x.x.x",
-               "x.x.x.x"
+               "x.x.x.z",
+               "x.x.x.z"
              ]
            }]
          },
@@ -176,8 +176,8 @@ iRule Apply
            "members": [{
              "servicePort": 80,
              "serverAddresses": [
-               "x.x.x.x",
-               "x.x.x.x"
+               "x.x.x.z",
+               "x.x.x.z"
              ]
            }]
          },
@@ -209,7 +209,7 @@ iRule Apply
         "blue_green_vip1": {
           "class": "Service_HTTP",
           "virtualAddresses": [
-            "x.x.x.x"
+            "x.x.x.y"
           ],
           "allowVlans": [
            {
@@ -230,8 +230,8 @@ iRule Apply
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "x.x.x.x",
-              "x.x.x.x"
+              "x.x.x.z",
+              "x.x.x.z"
             ]
           }]
         },
@@ -243,8 +243,8 @@ iRule Apply
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "x.x.x.x",
-              "x.x.x.x"
+              "x.x.x.z",
+              "x.x.x.z"
             ]
           }]
         },
@@ -276,7 +276,7 @@ Update Default Pool
         "blue_green_vip1": {
           "class": "Service_HTTP",
           "virtualAddresses": [
-            "x.x.x.x"
+            "x.x.x.y"
           ],
           "allowVlans": [
            {
@@ -297,8 +297,8 @@ Update Default Pool
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "x.x.x.x",
-              "x.x.x.x"
+              "x.x.x.z",
+              "x.x.x.z"
             ]
           }]
         },
@@ -310,8 +310,8 @@ Update Default Pool
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "x.x.x.x",
-              "x.x.x.x"
+              "x.x.x.z",
+              "x.x.x.z"
             ]
           }]
         },
@@ -343,7 +343,7 @@ iRule Remove
         "blue_green_vip1": {
           "class": "Service_HTTP",
           "virtualAddresses": [
-            "x.x.x.x"
+            "x.x.x.y"
           ],
           "allowVlans": [
             {
@@ -361,8 +361,8 @@ iRule Remove
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "x.x.x.x",
-              "x.x.x.x"
+              "x.x.x.z",
+              "x.x.x.z"
             ]
           }]
         },
@@ -374,8 +374,8 @@ iRule Remove
           "members": [{
             "servicePort": 80,
             "serverAddresses": [
-              "x.x.x.x",
-              "x.x.x.x"
+              "x.x.x.z",
+              "x.x.x.z"
             ]
           }]
         },
@@ -407,7 +407,7 @@ iRule Delete
            "blue_green_vip1": {
               "class": "Service_HTTP",
               "virtualAddresses": [
-                 "x.x.x.x"
+                 "x.x.x.y"
               ],
               "allowVlans": [
                   {
@@ -425,8 +425,8 @@ iRule Delete
               "members": [{
                  "servicePort": 80,
                  "serverAddresses": [
-                    "x.x.x.x",
-                    "x.x.x.x"
+                    "x.x.x.z",
+                    "x.x.x.z"
                  ]
               }]
            },
@@ -438,8 +438,8 @@ iRule Delete
              "members": [{
                 "servicePort": 80,
                 "serverAddresses": [
-                   "x.x.x.x",
-                   "x.x.x.x"
+                   "x.x.x.z",
+                   "x.x.x.z"
                 ]
              }]
           }
@@ -466,7 +466,7 @@ Pool Delete
            "blue_green_vip1": {
               "class": "Service_HTTP",
               "virtualAddresses": [
-                 "x.x.x.x"
+                 "x.x.x.y"
               ],
               "allowVlans": [
                   {
@@ -484,8 +484,8 @@ Pool Delete
              "members": [{
                 "servicePort": 80,
                 "serverAddresses": [
-                   "x.x.x.x",
-                   "x.x.x.x"
+                   "x.x.x.z",
+                   "x.x.x.z"
                 ]
              }]
           }
