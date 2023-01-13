@@ -1,0 +1,130 @@
+POST https://35.238.166.47/mgmt/shared/appsvcs/declare
+
+{
+   "class": "AS3",
+   "action": "deploy",
+   "persist": true,
+   "declaration": {
+      "class": "ADC",
+      "schemaVersion": "3.41.0",
+      "id": "example-declaration-01",
+      "label": "Sample 1",
+      "remark": "Simple HTTP application with RR pool",
+      "blue_green_demo": {
+         "class": "Tenant",
+         "Application_1": {
+            "class": "Application",
+            "blue_green_vip1": {
+               "class": "Service_HTTP",
+               "virtualAddresses": [
+                  "10.77.1.225"
+               ],
+               "allowVlans": [
+                  {
+                     "bigip": "/Common/external"
+                  }
+              ],
+               "pool": "blue_pool",
+               "persistenceMethods": []
+             },
+            "blue_pool": {
+               "class": "Pool",
+               "monitors": [
+                  "http"
+               ],
+               "members": [{
+                  "servicePort": 80,
+                  "serverAddresses": [
+                     "10.77.3.35",
+                     "10.77.3.116"
+                  ]
+               }]
+            },
+            "green_pool": {
+              "class": "Pool",
+              "monitors": [
+                 "http"
+              ],
+              "members": [{
+                 "servicePort": 80,
+                 "serverAddresses": [
+                    "10.77.3.117",
+                    "10.77.3.118"
+                 ]
+              }]
+           }
+         }
+      }
+   }
+}
+
+or two vip's
+
+{
+    "class": "AS3",
+    "action": "deploy",
+    "persist": true,
+    "declaration": {
+       "class": "ADC",
+       "schemaVersion": "3.0.0",
+       "id": "example-declaration-01",
+       "label": "Sample 1",
+       "remark": "Simple HTTP application with RR pool",
+       "blue_green_demo": {
+          "class": "Tenant",
+          "Application_1": {
+             "class": "Application",
+             "blue_green_vip1": {
+                "class": "Service_HTTP",
+                "virtualAddresses": [
+                   "10.77.1.225"
+                ],
+                "pool": "blue_pool",
+                "persistenceMethods": []
+              },
+             "blue_pool": {
+                "class": "Pool",
+                "monitors": [
+                   "http"
+                ],
+                "members": [{
+                   "servicePort": 80,
+                   "serverAddresses": [
+                      "10.77.3.35",
+                      "10.77.3.116"
+                   ]
+                }]
+             }
+          },
+          "Application_2": {
+            "class": "Application",
+            "blue_green_vip2": {
+               "class": "Service_HTTP",
+               "virtualAddresses": [
+                  "10.77.1.254"
+               ],
+               "pool": "green_pool",
+               "persistenceMethods": []
+             },
+            "green_pool": {
+               "class": "Pool",
+               "monitors": [
+                  "http"
+               ],
+               "members": [{
+                  "servicePort": 80,
+                  "serverAddresses": [
+                     "10.77.3.117",
+                     "10.77.3.118"
+                  ]
+               }]
+            }
+         }
+       }
+    }
+ }
+
+ Delete All Partitions
+ DELETE https://35.238.166.47/mgmt/shared/appsvcs/declare/
+ Or Delete 1, use commas for multiple
+ DELETE https://35.238.166.47/mgmt/shared/appsvcs/declare/blue_green_demo

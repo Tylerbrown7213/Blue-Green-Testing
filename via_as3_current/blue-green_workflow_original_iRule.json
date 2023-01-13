@@ -1,0 +1,495 @@
+POST https://35.238.166.47/mgmt/shared/appsvcs/declare
+DELETE https://35.238.166.47/mgmt/shared/appsvcs/declare/blue_green_demo
+
+Application Deployment
+{
+    "class": "AS3",
+    "action": "deploy",
+    "persist": true,
+    "declaration": {
+       "class": "ADC",
+       "schemaVersion": "3.41.0",
+       "id": "example-declaration-01",
+       "label": "Sample 1",
+       "remark": "Simple HTTP application with RR pool",
+       "blue_green_demo": {
+          "class": "Tenant",
+          "Application_1": {
+             "class": "Application",
+             "blue_green_vip1": {
+                "class": "Service_HTTP",
+                "virtualAddresses": [
+                   "10.77.1.225"
+                ],
+                "allowVlans": [
+                    {
+                       "bigip": "/Common/external"
+                    }
+                ],
+                "pool": "blue_pool",
+                "persistenceMethods": []
+              },
+             "blue_pool": {
+                "class": "Pool",
+                "monitors": [
+                   "http"
+                ],
+                "members": [{
+                   "servicePort": 80,
+                   "serverAddresses": [
+                      "10.77.3.35",
+                      "10.77.3.116"
+                   ]
+                }]
+             },
+             "green_pool": {
+               "class": "Pool",
+               "monitors": [
+                  "http"
+               ],
+               "members": [{
+                  "servicePort": 80,
+                  "serverAddresses": [
+                     "10.77.3.117",
+                     "10.77.3.118"
+                  ]
+               }]
+            }
+          }
+       }
+    }
+  }
+
+iRule Create
+{
+  "class": "AS3",
+  "action": "deploy",
+  "persist": true,
+  "declaration": {
+    "class": "ADC",
+    "schemaVersion": "3.41.0",
+    "id": "example-declaration-01",
+    "label": "Sample 1",
+    "remark": "Simple HTTP application with RR pool",
+    "blue_green_demo": {
+      "class": "Tenant",
+      "Application_1": {
+        "class": "Application",
+        "blue_green_vip1": {
+          "class": "Service_HTTP",
+          "virtualAddresses": [
+            "10.77.1.225"
+          ],
+          "allowVlans": [
+            {
+               "bigip": "/Common/external"
+            }
+         ],
+          "pool": "blue_pool",
+          "persistenceMethods": []
+        },
+        "blue_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [{
+            "servicePort": 80,
+            "serverAddresses": [
+              "10.77.3.35",
+              "10.77.3.116"
+            ]
+          }]
+        },
+        "green_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [{
+            "servicePort": 80,
+            "serverAddresses": [
+              "10.77.3.117",
+              "10.77.3.118"
+            ]
+          }]
+        },
+        "blue_green_vip1_bluegreen_irule": {
+          "class": "iRule",
+          "remark": "blue green workflow",
+          "iRule": "when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > 80 }\n{pool {/blue_green_demo/Application_1/green_pool}\n}\n}"
+        }
+      }
+    }
+  }
+}
+
+iRule Add
+ {
+   "class": "AS3",
+   "action": "deploy",
+   "persist": true,
+   "declaration": {
+     "class": "ADC",
+     "schemaVersion": "3.41.0",
+     "id": "example-declaration-01",
+     "label": "Sample 1",
+     "remark": "Simple HTTP application with RR pool",
+     "blue_green_demo": {
+       "class": "Tenant",
+       "Application_1": {
+         "class": "Application",
+         "blue_green_vip1": {
+           "class": "Service_HTTP",
+           "virtualAddresses": [
+             "10.77.1.225"
+           ],
+           "allowVlans": [
+            {
+               "bigip": "/Common/external"
+            }
+         ],
+           "pool": "blue_pool",
+           "persistenceMethods": [],
+           "iRules": [
+             "blue_green_vip1_bluegreen_irule"
+           ]
+         },
+         "blue_pool": {
+           "class": "Pool",
+           "monitors": [
+             "http"
+           ],
+           "members": [{
+             "servicePort": 80,
+             "serverAddresses": [
+               "10.77.3.35",
+               "10.77.3.116"
+             ]
+           }]
+         },
+         "green_pool": {
+           "class": "Pool",
+           "monitors": [
+             "http"
+           ],
+           "members": [{
+             "servicePort": 80,
+             "serverAddresses": [
+               "10.77.3.117",
+               "10.77.3.118"
+             ]
+           }]
+         },
+         "blue_green_vip1_bluegreen_irule": {
+           "class": "iRule",
+           "remark": "blue green workflow",
+           "iRule": "when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > 80 }\n{pool {/blue_green_demo/Application_1/green_pool}\n}\n}"
+         }
+       }
+     }
+   }
+ }
+
+ iRule Update
+ {
+  "class": "AS3",
+  "action": "deploy",
+  "persist": true,
+  "declaration": {
+    "class": "ADC",
+    "schemaVersion": "3.41.0",
+    "id": "example-declaration-01",
+    "label": "Sample 1",
+    "remark": "Simple HTTP application with RR pool",
+    "blue_green_demo": {
+      "class": "Tenant",
+      "Application_1": {
+        "class": "Application",
+        "blue_green_vip1": {
+          "class": "Service_HTTP",
+          "virtualAddresses": [
+            "10.77.1.225"
+          ],
+          "allowVlans": [
+           {
+              "bigip": "/Common/external"
+           }
+        ],
+          "pool": "blue_pool",
+          "persistenceMethods": [],
+          "iRules": [
+            "blue_green_vip1_bluegreen_irule"
+          ]
+        },
+        "blue_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [{
+            "servicePort": 80,
+            "serverAddresses": [
+              "10.77.3.35",
+              "10.77.3.116"
+            ]
+          }]
+        },
+        "green_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [{
+            "servicePort": 80,
+            "serverAddresses": [
+              "10.77.3.117",
+              "10.77.3.118"
+            ]
+          }]
+        },
+        "blue_green_vip1_bluegreen_irule": {
+          "class": "iRule",
+          "remark": "blue green workflow",
+          "iRule": "when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > 20 }\n{pool {/blue_green_demo/Application_1/green_pool}\n}\n}"
+        }
+      }
+    }
+  }
+}
+
+Update Default Pool
+{
+  "class": "AS3",
+  "action": "deploy",
+  "persist": true,
+  "declaration": {
+    "class": "ADC",
+    "schemaVersion": "3.41.0",
+    "id": "example-declaration-01",
+    "label": "Sample 1",
+    "remark": "Simple HTTP application with RR pool",
+    "blue_green_demo": {
+      "class": "Tenant",
+      "Application_1": {
+        "class": "Application",
+        "blue_green_vip1": {
+          "class": "Service_HTTP",
+          "virtualAddresses": [
+            "10.77.1.225"
+          ],
+          "allowVlans": [
+           {
+              "bigip": "/Common/external"
+           }
+        ],
+          "pool": "green_pool",
+          "persistenceMethods": [],
+          "iRules": [
+            "blue_green_vip1_bluegreen_irule"
+          ]
+        },
+        "blue_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [{
+            "servicePort": 80,
+            "serverAddresses": [
+              "10.77.3.35",
+              "10.77.3.116"
+            ]
+          }]
+        },
+        "green_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [{
+            "servicePort": 80,
+            "serverAddresses": [
+              "10.77.3.117",
+              "10.77.3.118"
+            ]
+          }]
+        },
+        "blue_green_vip1_bluegreen_irule": {
+          "class": "iRule",
+          "remark": "blue green workflow",
+          "iRule": "when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > 20 }\n{pool {/blue_green_demo/Application_1/green_pool}\n}\n}"
+        }
+      }
+    }
+  }
+}
+
+iRule Remove
+{
+  "class": "AS3",
+  "action": "deploy",
+  "persist": true,
+  "declaration": {
+    "class": "ADC",
+    "schemaVersion": "3.41.0",
+    "id": "example-declaration-01",
+    "label": "Sample 1",
+    "remark": "Simple HTTP application with RR pool",
+    "blue_green_demo": {
+      "class": "Tenant",
+      "Application_1": {
+        "class": "Application",
+        "blue_green_vip1": {
+          "class": "Service_HTTP",
+          "virtualAddresses": [
+            "10.77.1.225"
+          ],
+          "allowVlans": [
+            {
+               "bigip": "/Common/external"
+            }
+         ],
+          "pool": "green_pool",
+          "persistenceMethods": []
+        },
+        "blue_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [{
+            "servicePort": 80,
+            "serverAddresses": [
+              "10.77.3.35",
+              "10.77.3.116"
+            ]
+          }]
+        },
+        "green_pool": {
+          "class": "Pool",
+          "monitors": [
+            "http"
+          ],
+          "members": [{
+            "servicePort": 80,
+            "serverAddresses": [
+              "10.77.3.117",
+              "10.77.3.118"
+            ]
+          }]
+        },
+        "blue_green_vip1_bluegreen_irule": {
+          "class": "iRule",
+          "remark": "blue green workflow",
+          "iRule": "when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > 80 }\n{pool {/blue_green_demo/Application_1/green_pool}\n}\n}"
+        }
+      }
+    }
+  }
+}
+
+iRule Delete
+{
+  "class": "AS3",
+  "action": "deploy",
+  "persist": true,
+  "declaration": {
+     "class": "ADC",
+     "schemaVersion": "3.41.0",
+     "id": "example-declaration-01",
+     "label": "Sample 1",
+     "remark": "Simple HTTP application with RR pool",
+     "blue_green_demo": {
+        "class": "Tenant",
+        "Application_1": {
+           "class": "Application",
+           "blue_green_vip1": {
+              "class": "Service_HTTP",
+              "virtualAddresses": [
+                 "10.77.1.225"
+              ],
+              "allowVlans": [
+                  {
+                     "bigip": "/Common/external"
+                  }
+              ],
+              "pool": "green_pool",
+              "persistenceMethods": []
+            },
+           "blue_pool": {
+              "class": "Pool",
+              "monitors": [
+                 "http"
+              ],
+              "members": [{
+                 "servicePort": 80,
+                 "serverAddresses": [
+                    "10.77.3.35",
+                    "10.77.3.116"
+                 ]
+              }]
+           },
+           "green_pool": {
+             "class": "Pool",
+             "monitors": [
+                "http"
+             ],
+             "members": [{
+                "servicePort": 80,
+                "serverAddresses": [
+                   "10.77.3.117",
+                   "10.77.3.118"
+                ]
+             }]
+          }
+        }
+     }
+  }
+}
+
+Pool Delete
+{
+  "class": "AS3",
+  "action": "deploy",
+  "persist": true,
+  "declaration": {
+     "class": "ADC",
+     "schemaVersion": "3.41.0",
+     "id": "example-declaration-01",
+     "label": "Sample 1",
+     "remark": "Simple HTTP application with RR pool",
+     "blue_green_demo": {
+        "class": "Tenant",
+        "Application_1": {
+           "class": "Application",
+           "blue_green_vip1": {
+              "class": "Service_HTTP",
+              "virtualAddresses": [
+                 "10.77.1.225"
+              ],
+              "allowVlans": [
+                  {
+                     "bigip": "/Common/external"
+                  }
+              ],
+              "pool": "green_pool",
+              "persistenceMethods": []
+            },
+           "green_pool": {
+             "class": "Pool",
+             "monitors": [
+                "http"
+             ],
+             "members": [{
+                "servicePort": 80,
+                "serverAddresses": [
+                   "10.77.3.117",
+                   "10.77.3.118"
+                ]
+             }]
+          }
+        }
+     }
+  }
+}

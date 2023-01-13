@@ -1,0 +1,78 @@
+CREATE the iRule
+POST https://serveraddress/mgmt/tm/ltm/rule
+Authorization: Basic admin adminpassword 
+Content-Type: application/json
+POST https://35.238.166.47/mgmt/tm/ltm/rule
+
+{
+    "name":"/{{tenant}}/{{application}}/{{service}}_bluegreen_irule",
+    "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > {{distribution}} }\n{pool {{greenpool}}}\n}"
+}
+
+{
+    "name":"/blue_green_demo/Application_1/blue_green_vip1_bluegreen_irule",
+    "apiAnonymous":"when RULE_INIT { set static::ratio 80 }\n when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > $static::ratio } { pool {/blue_green_demo/Application_1/green_pool} }\n}"
+}
+
+ENABLE the iRule
+PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
+Authorization: Basic admin adminpassword 
+Content-Type: application/json
+PATCH https://35.238.166.47/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
+
+{
+    "rules": [{{service}}_bluegreen_irule]
+}
+
+{
+    "rules": ["blue_green_vip1_bluegreen_irule"]
+}
+    
+
+UPDATE the distribution or pool
+PATCH https://serveraddress/mgmt/tm/ltm/rule/~{{ tenant }}~{{ application }}~{{ service }}_bluegreen_irule
+Authorization: Basic admin adminpassword 
+Content-Type: application/json
+PATCH https://35.238.166.47/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green_vip1_bluegreen_irule
+
+{
+    "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > {{distribution}} }\n{pool {{greenpool}}}\n}"
+}
+
+{
+    "apiAnonymous":"when RULE_INIT { set static::ratio 20 }\n when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > $static::ratio } { pool {/blue_green_demo/Application_1/green_pool} }\n}"
+}
+
+UPDATE the default pool
+PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
+Authorization: Basic admin adminpassword 
+Content-Type: application/json
+PATCH https://35.238.166.47/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
+
+{
+    "pool": "/Common/Shared/green"
+}
+
+{
+    "pool": "/blue_green_demo/Application_1/green_pool"
+}
+
+
+DISABLE and remove the iRule
+PATCH https://serveraddress/mgmt/tm/ltm/virtual/~{{ tenant }}~{{ application }}~{{ service }}
+Authorization: Basic admin adminpassword 
+Content-Type: application/json
+PATCH https://35.238.166.47/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_green_vip1
+
+{
+    "rules": []
+}
+
+{
+    "rules": []
+}    
+
+DELETE https://serveraddress/mgmt/tm/ltm/rule/~{{ tenant }}~{{ application }}~{{ service }}_bluegreen_irule
+Authorization: Basic admin adminpassword 
+Content-Type: application/json
+DELETE https://35.238.166.47/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green_vip1_bluegreen_irule
