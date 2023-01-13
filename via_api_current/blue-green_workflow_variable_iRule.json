@@ -10,6 +10,8 @@ POST https://x.x.x.x/mgmt/tm/ltm/rule
     "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > {{distribution}} }\n{pool {{greenpool}}}\n}"
 }
 
+Example
+
 {
     "name":"/blue_green_demo/Application_1/blue_green_vip1_bluegreen_irule",
     "apiAnonymous":"when RULE_INIT { set static::ratio 80 }\n when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > $static::ratio } { pool {/blue_green_demo/Application_1/green_pool} }\n}"
@@ -25,6 +27,8 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_gr
 {
     "rules": [{{service}}_bluegreen_irule]
 }
+
+Example
 
 {
     "rules": ["blue_green_vip1_bluegreen_irule"]
@@ -42,6 +46,8 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green
     "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > {{distribution}} }\n{pool {{greenpool}}}\n}"
 }
 
+Example
+
 {
     "apiAnonymous":"when RULE_INIT { set static::ratio 20 }\n when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > $static::ratio } { pool {/blue_green_demo/Application_1/green_pool} }\n}"
 }
@@ -56,6 +62,8 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_gr
 {
     "pool": "/Common/Shared/green"
 }
+
+Example
 
 {
     "pool": "/blue_green_demo/Application_1/green_pool"
@@ -72,6 +80,8 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_gr
 {
     "rules": []
 }
+
+Example
 
 {
     "rules": []

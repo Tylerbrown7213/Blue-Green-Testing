@@ -42,6 +42,8 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/rule/~blue_green_demo~Application_1~blue_green
     "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > {{distribution}} }\n{pool {{greenpool}}}\n}"
 }
 
+Example
+
 {
     "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > 80 }\n{pool {/blue_green_demo/Application_1/green_pool}\n}\n}\n}"
 }
@@ -56,6 +58,8 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_gr
 {
     "pool": "/Common/Shared/green"
 }
+
+Example
 
 {
     "pool": "/blue_green_demo/Application_1/green_pool"
@@ -72,6 +76,8 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_gr
 {
     "rules": []
 }
+
+Example
 
 {
     "rules": []
