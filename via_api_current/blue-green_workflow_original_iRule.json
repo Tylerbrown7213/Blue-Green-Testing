@@ -10,6 +10,8 @@ POST https://x.x.x.x/mgmt/tm/ltm/rule
     "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > {{distribution}} }\n{pool {{greenpool}}}\n}"
 }
 
+Example
+
 {
     "name":"/blue_green_demo/Application_1/blue_green_vip1_bluegreen_irule",
     "apiAnonymous":"when CLIENT_ACCEPTED {\nset rand [expr {[TCP::client_port] % 100}]\nif { $rand > 20 }\n{pool {/blue_green_demo/Application_1/green_pool}\n}\n}\n}"
@@ -25,6 +27,8 @@ PATCH https://x.x.x.x/mgmt/tm/ltm/virtual/~blue_green_demo~Application_1~blue_gr
 {
     "rules": [{{service}}_bluegreen_irule]
 }
+
+Example
 
 {
     "rules": ["blue_green_vip1_bluegreen_irule"]
