@@ -17,7 +17,7 @@ POST https://x.x.x.x/mgmt/shared/appsvcs/declare
             "blue_green_vip1": {
                "class": "Service_HTTP",
                "virtualAddresses": [
-                  "x.x.x.x"
+                  "x.x.x.y"
                ],
                "allowVlans": [
                   {
@@ -35,8 +35,8 @@ POST https://x.x.x.x/mgmt/shared/appsvcs/declare
                "members": [{
                   "servicePort": 80,
                   "serverAddresses": [
-                     "x.x.x.x",
-                     "x.x.x.x"
+                     "x.x.x.z",
+                     "x.x.x.z"
                   ]
                }]
             },
@@ -48,8 +48,8 @@ POST https://x.x.x.x/mgmt/shared/appsvcs/declare
               "members": [{
                  "servicePort": 80,
                  "serverAddresses": [
-                    "x.x.x.x",
-                    "x.x.x.x"
+                    "x.x.x.z",
+                    "x.x.x.z"
                  ]
               }]
            }
@@ -77,7 +77,7 @@ or two vip's
              "blue_green_vip1": {
                 "class": "Service_HTTP",
                 "virtualAddresses": [
-                   "x.x.x.x"
+                   "x.x.x.y"
                 ],
                 "pool": "blue_pool",
                 "persistenceMethods": []
@@ -90,8 +90,8 @@ or two vip's
                 "members": [{
                    "servicePort": 80,
                    "serverAddresses": [
-                      "x.x.x.x",
-                      "x.x.x.x"
+                      "x.x.x.z",
+                      "x.x.x.z"
                    ]
                 }]
              }
@@ -101,7 +101,7 @@ or two vip's
             "blue_green_vip2": {
                "class": "Service_HTTP",
                "virtualAddresses": [
-                  "x.x.x.x"
+                  "x.x.x.y"
                ],
                "pool": "green_pool",
                "persistenceMethods": []
@@ -114,8 +114,8 @@ or two vip's
                "members": [{
                   "servicePort": 80,
                   "serverAddresses": [
-                     "x.x.x.x",
-                     "x.x.x.x"
+                     "x.x.x.z",
+                     "x.x.x.z"
                   ]
                }]
             }
