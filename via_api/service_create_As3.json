@@ -35,8 +35,8 @@ POST https://x.x.x.x/mgmt/shared/appsvcs/declare
                "members": [{
                   "servicePort": 80,
                   "serverAddresses": [
-                     "x.x.x.z",
-                     "x.x.x.z"
+                     "x.x.x.b",
+                     "x.x.x.b"
                   ]
                }]
             },
@@ -48,8 +48,8 @@ POST https://x.x.x.x/mgmt/shared/appsvcs/declare
               "members": [{
                  "servicePort": 80,
                  "serverAddresses": [
-                    "x.x.x.z",
-                    "x.x.x.z"
+                    "x.x.x.g",
+                    "x.x.x.g"
                  ]
               }]
            }
@@ -90,8 +90,8 @@ or two vip's
                 "members": [{
                    "servicePort": 80,
                    "serverAddresses": [
-                      "x.x.x.z",
-                      "x.x.x.z"
+                      "x.x.x.b",
+                      "x.x.x.b"
                    ]
                 }]
              }
@@ -114,8 +114,8 @@ or two vip's
                "members": [{
                   "servicePort": 80,
                   "serverAddresses": [
-                     "x.x.x.z",
-                     "x.x.x.z"
+                     "x.x.x.g",
+                     "x.x.x.g"
                   ]
                }]
             }
