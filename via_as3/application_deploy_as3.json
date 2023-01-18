@@ -37,8 +37,8 @@ Service Create
                 "members": [{
                    "servicePort": 80,
                    "serverAddresses": [
-                      "x.x.x.z",
-                      "x.x.x.z"
+                      "x.x.x.b",
+                      "x.x.x.b"
                    ]
                 }]
              }
