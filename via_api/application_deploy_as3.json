@@ -90,8 +90,8 @@ or two vip's
                 "members": [{
                    "servicePort": 80,
                    "serverAddresses": [
-                      "x.x.x.b",
-                      "x.x.x.b"
+                      "x.x.x.b_1",
+                      "x.x.x.b_2"
                    ]
                 }]
              }
@@ -114,8 +114,8 @@ or two vip's
                "members": [{
                   "servicePort": 80,
                   "serverAddresses": [
-                     "x.x.x.g",
-                     "x.x.x.g"
+                     "x.x.x.g_1",
+                     "x.x.x.g_2"
                   ]
                }]
             }
