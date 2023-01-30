@@ -21,7 +21,7 @@ Content-Type: application/json
 PATCH https://x.x.x.x/mgmt/tm/sys/db/provision.extramb
 
 {
-    "value": "1000"
+    "value": "2400"
 }
 
 Followed by
