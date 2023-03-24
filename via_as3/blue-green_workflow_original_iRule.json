@@ -209,7 +209,7 @@ iRule Update
                "pool": "blue_pool",
                "persistenceMethods": []
              },
-            "green_pool": {
+            "blue_pool": {
                "class": "Pool",
                "monitors": [
                   "http"
