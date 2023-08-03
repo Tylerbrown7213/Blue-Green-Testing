@@ -1,4 +1,4 @@
-Enable burst handling for AS3
+Enable burst handling
 POST https://serveraddress/mgmt/shared/appsvcs/settings
 Authorization: Basic admin adminpassword 
 Content-Type: application/json
